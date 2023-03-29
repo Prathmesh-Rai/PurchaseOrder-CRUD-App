@@ -1,0 +1,64 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "org.Brightly";
+option java_outer_classname = "PurchaseOrderAppProto";
+
+package PurchaseOrderAppProto;
+
+message PurchaseOrderRequest{
+    string name = 1 ;
+    int32 poID = 2 ;
+    string description = 3 ;
+    string notes = 4 ;
+    Supplier supplier = 5 ;
+    Address shippingAddress = 6 ;
+    repeated Item items = 7 ;
+    POStatus status = 8 ;
+}
+message PurchaseOrderResponse
+{
+    int32 poId = 1;
+}
+
+message Item{
+    string name = 1 ;
+    int32 itemID = 2 ;
+    string description = 3 ;
+    int32 quantity = 4 ;
+    int32 price = 5 ;
+    ItemStatus status = 6 ;
+}
+
+message Supplier{
+    string name = 1 ;
+    int32 supplierID = 2 ;
+    Address supplierAdd = 3 ;
+    string email = 4 ;
+    string phoneNo = 5 ;
+    string fax = 6 ;
+}
+
+message Address{
+    string city = 1 ;
+    string state = 2 ;
+    string country = 3 ;
+    string pin = 4 ;
+}
+
+enum POStatus{
+    draft = 0 ;
+    submitted = 1 ;
+}
+
+enum ItemStatus{
+    available = 0 ;
+    unavailable = 1 ;
+}
+
+service PurchaseOrderRPCs{
+    rpc createPurchaseOrder(PurchaseOrderRequest) returns(PurchaseOrderResponse) {}
+}
+
+
+
