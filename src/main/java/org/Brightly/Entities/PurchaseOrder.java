@@ -14,7 +14,7 @@ import java.util.List;
 //@Setter
 public class PurchaseOrder {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     int poID ;
     @NotNull
     String name ;
@@ -26,7 +26,7 @@ public class PurchaseOrder {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "Address" , referencedColumnName = "id")
     Address shippingAddress ;
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "PO")
     List<Item> items ;
     public enum POStatus {draft,submitted}
     POStatus status ;

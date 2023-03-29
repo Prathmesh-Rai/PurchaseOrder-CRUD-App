@@ -8,6 +8,7 @@ import org.Brightly.Entities.Item;
 import org.Brightly.Entities.PurchaseOrder;
 import org.Brightly.Entities.Supplier;
 import org.Brightly.Repository.PurchaseOrderRepository;
+import org.Brightly.Repository.PurchaseOrderRepositoryImpl;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
@@ -17,7 +18,7 @@ import java.util.List;
 public class PurchaseOrderGrpcService extends MutinyPurchaseOrderRPCsGrpc.PurchaseOrderRPCsImplBase {
 
     @Inject
-    PurchaseOrderRepository purchaseOrderRepository ;
+    PurchaseOrderRepositoryImpl purchaseOrderRepository ;
 
     @Override
     public Uni<PurchaseOrderResponse> createPurchaseOrder(PurchaseOrderRequest request) {
@@ -25,7 +26,7 @@ public class PurchaseOrderGrpcService extends MutinyPurchaseOrderRPCsGrpc.Purcha
       PurchaseOrder purchaseOrder = PurchaseOrderConverter.generatePurchaseOrder(request) ;
       purchaseOrder.setStatus(PurchaseOrder.POStatus.draft);
 
-      Uni<PurchaseOrder> purchaseOrderUni =  purchaseOrderRepository.createPurchaseOrder(purchaseOrder);
+      Uni<PurchaseOrder> purchaseOrderUni =  purchaseOrderRepository.persistAndFlush(purchaseOrder);
 
        return purchaseOrderUni.onItem().transform(order -> PurchaseOrderResponse.newBuilder().setPoId(order.getPoID()).build());
     }

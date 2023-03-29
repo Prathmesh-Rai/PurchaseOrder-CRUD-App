@@ -14,7 +14,7 @@ public class PurchaseOrderConverter {
         List<Item> list = new ArrayList<>();
         request.getItemsList().stream().forEach(item ->{
             Item item1 =new Item();
-            item1.setItemID(item.getItemID());
+            //item1.setItemID(item.getItemID());
             item1.setName(item.getName());
             item1.setDescription(item.getDescription());
             item1.setPrice(item.getPrice());
@@ -23,7 +23,7 @@ public class PurchaseOrderConverter {
             list.add(item1);
         });
 
-        pojo_purchaseOrder.setPoID(request.getPoID());
+        //pojo_purchaseOrder.setPoID(request.getPoID());
         pojo_purchaseOrder.setName(request.getName());
         pojo_purchaseOrder.setNotes(request.getNotes());
         pojo_purchaseOrder.setDescription(request.getDescription());

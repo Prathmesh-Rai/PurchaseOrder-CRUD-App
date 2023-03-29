@@ -14,8 +14,7 @@ public class Supplier {
     @GeneratedValue(strategy = GenerationType.AUTO)
     int supplierID ;
     String name ;
-    @OneToOne
-    Address supplierAddress ;
+    String supplierAddress ;
     String email ;
     String phone ;
     String fax ;
@@ -36,11 +35,11 @@ public class Supplier {
         this.name = name;
     }
 
-    public Address getSupplierAddress() {
+    public String getSupplierAddress() {
         return supplierAddress;
     }
 
-    public void setSupplierAddress(Address supplierAddress) {
+    public void setSupplierAddress(String supplierAddress) {
         this.supplierAddress = supplierAddress;
     }
 
