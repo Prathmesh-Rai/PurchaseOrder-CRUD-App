@@ -1,6 +1,7 @@
 package org.Brightly.GRPCService;
 
 import io.quarkus.grpc.GrpcService;
+import io.smallrye.mutiny.Multi;
 import io.smallrye.mutiny.Uni;
 import org.Brightly.*;
 import org.Brightly.Converter.PurchaseOrderConverter;
@@ -29,5 +30,13 @@ public class PurchaseOrderGrpcService extends MutinyPurchaseOrderRPCsGrpc.Purcha
       Uni<PurchaseOrder> purchaseOrderUni =  purchaseOrderRepository.persistAndFlush(purchaseOrder);
 
        return purchaseOrderUni.onItem().transform(order -> PurchaseOrderResponse.newBuilder().setPoId(order.getPoID()).build());
+    }
+
+
+    @Override
+    public Uni<PurchaseOrderRequest> getPurchaseOrder(GetPurchaseOrderRequest request) {
+        int request_id = request.getPoId() ;
+        Long id = (long) request_id ;
+        Uni<PurchaseOrder> purchaseOrderUni = purchaseOrderRepository.findById()
     }
 }

@@ -46,6 +46,14 @@ message Address{
     string pin = 4 ;
 }
 
+message Empty{
+
+}
+
+message GetPurchaseOrderRequest{
+    int32 poId = 1 ;
+}
+
 enum POStatus{
     draft = 0 ;
     submitted = 1 ;
@@ -58,6 +66,8 @@ enum ItemStatus{
 
 service PurchaseOrderRPCs{
     rpc createPurchaseOrder(PurchaseOrderRequest) returns(PurchaseOrderResponse) {}
+    rpc GetAllPurchaseOrders(Empty) returns(stream PurchaseOrderRequest) {}
+    rpc GetPurchaseOrder(GetPurchaseOrderRequest) returns(PurchaseOrderRequest) {}
 }
 
 
