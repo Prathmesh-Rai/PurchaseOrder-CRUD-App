@@ -14,7 +14,10 @@ public class Supplier {
     @GeneratedValue(strategy = GenerationType.AUTO)
     int supplierID ;
     String name ;
-    String supplierAddress ;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "Address" , referencedColumnName = "id")
+    Address supplierAddress ;
     String email ;
     String phone ;
     String fax ;
@@ -35,12 +38,12 @@ public class Supplier {
         this.name = name;
     }
 
-    public String getSupplierAddress() {
+    public Address getSupplierAddress() {
         return supplierAddress;
     }
 
-    public void setSupplierAddress(String supplierAddress) {
-        this.supplierAddress = supplierAddress;
+    public void setSupplierAddress(Address supplierAddress) {
+        this.supplierAddress = supplierAddress ;
     }
 
     public String getEmail() {

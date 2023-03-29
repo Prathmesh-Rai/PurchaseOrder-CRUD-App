@@ -9,7 +9,7 @@ public class SupplierConverter {
         pojo_supplier.setEmail(request_supplier.getEmail());
         pojo_supplier.setFax(request_supplier.getFax());
         pojo_supplier.setName(request_supplier.getName());
-        //pojo_supplier.setSupplierAddress(AddressConverter.generateAddress(request_supplier.getSupplierAdd()));
+        pojo_supplier.setSupplierAddress(AddressConverter.generateAddress(request_supplier.getSupplierAdd()));
         return pojo_supplier ;
     }
 }
