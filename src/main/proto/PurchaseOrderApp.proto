@@ -8,7 +8,7 @@ package PurchaseOrderAppProto;
 
 message PurchaseOrderRequest{
     string name = 1 ;
-    int32 poID = 2 ;
+    int64 poID = 2 ;
     string description = 3 ;
     string notes = 4 ;
     Supplier supplier = 5 ;
@@ -18,21 +18,21 @@ message PurchaseOrderRequest{
 }
 message PurchaseOrderResponse
 {
-    int32 poId = 1;
+    int64 poId = 1;
 }
 
 message Item{
     string name = 1 ;
-    int32 itemID = 2 ;
+    int64 itemID = 2 ;
     string description = 3 ;
-    int32 quantity = 4 ;
-    int32 price = 5 ;
+    int64 quantity = 4 ;
+    int64 price = 5 ;
     ItemStatus status = 6 ;
 }
 
 message Supplier{
     string name = 1 ;
-    int32 supplierID = 2 ;
+    int64 supplierID = 2 ;
     Address supplierAdd = 3 ;
     string email = 4 ;
     string phoneNo = 5 ;
@@ -46,12 +46,26 @@ message Address{
     string pin = 4 ;
 }
 
+
+
+
 message Empty{
 
 }
 
+message GetPurchaseOrderResponse{
+    string name = 1 ;
+    int64 poID = 2 ;
+    string description = 3 ;
+    string notes = 4 ;
+    Supplier supplier = 5 ;
+    Address shippingAddress = 6 ;
+    repeated Item items = 7 ;
+    POStatus status = 8 ;
+}
+
 message GetPurchaseOrderRequest{
-    int32 poId = 1 ;
+    int64 poId = 1 ;
 }
 
 enum POStatus{
@@ -64,10 +78,18 @@ enum ItemStatus{
     unavailable = 1 ;
 }
 
+message updateStatusRequest{
+    int64 poId = 1 ;
+}
+
+
+
 service PurchaseOrderRPCs{
     rpc createPurchaseOrder(PurchaseOrderRequest) returns(PurchaseOrderResponse) {}
-    rpc GetAllPurchaseOrders(Empty) returns(stream PurchaseOrderRequest) {}
-    rpc GetPurchaseOrder(GetPurchaseOrderRequest) returns(PurchaseOrderRequest) {}
+    rpc getAllPurchaseOrders(Empty) returns(stream GetPurchaseOrderResponse) {}
+    rpc getPurchaseOrder(GetPurchaseOrderRequest) returns(GetPurchaseOrderResponse) {}
+    rpc updatePurchaseOrder(PurchaseOrderRequest) returns(PurchaseOrderResponse) {}
+    rpc updateStatus(updateStatusRequest) returns(GetPurchaseOrderResponse) {}
 }
 
 

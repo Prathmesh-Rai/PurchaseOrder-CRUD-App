@@ -15,7 +15,7 @@ import java.util.List;
 public class PurchaseOrder {
     @Id
     @GeneratedValue
-    int poID ;
+    long poID ;
     @NotNull
     String name ;
     String description ;
@@ -31,11 +31,11 @@ public class PurchaseOrder {
     public enum POStatus {draft,submitted}
     POStatus status ;
 
-    public int getPoID() {
+    public long getPoID() {
         return poID;
     }
 
-    public void setPoID(int poID) {
+    public void setPoID(long poID) {
         this.poID = poID;
     }
 

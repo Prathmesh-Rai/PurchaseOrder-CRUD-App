@@ -1,4 +1,4 @@
-package org.Brightly.Converter;
+package org.Brightly.Converter_Proto_to_POJO;
 
 import org.Brightly.Address;
 

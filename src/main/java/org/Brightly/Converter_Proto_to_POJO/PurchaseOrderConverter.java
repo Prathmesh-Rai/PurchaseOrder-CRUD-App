@@ -1,4 +1,4 @@
-package org.Brightly.Converter;
+package org.Brightly.Converter_Proto_to_POJO;
 
 import org.Brightly.Entities.Item;
 import org.Brightly.Entities.PurchaseOrder;
@@ -23,7 +23,7 @@ public class PurchaseOrderConverter {
             list.add(item1);
         });
 
-        //pojo_purchaseOrder.setPoID(request.getPoID());
+   //     pojo_purchaseOrder.setPoID(request.getPoID());
         pojo_purchaseOrder.setName(request.getName());
         pojo_purchaseOrder.setNotes(request.getNotes());
         pojo_purchaseOrder.setDescription(request.getDescription());

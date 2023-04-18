@@ -14,21 +14,21 @@ import javax.persistence.*;
 public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int itemID ;
+    long itemID ;
     String name ;
     String description ;
-    int quantity ;
-    int price ;
+    long quantity ;
+    long price ;
     @ManyToOne
     PurchaseOrder PO ;
     public enum itemStatus{available,unavailable} ;
     itemStatus status ;
 
-    public int getItemID() {
+    public long getItemID() {
         return itemID;
     }
 
-    public void setItemID(int itemID) {
+    public void setItemI(long itemID) {
         this.itemID = itemID;
     }
 
@@ -48,19 +48,19 @@ public class Item {
         this.description = description;
     }
 
-    public int getQuantity() {
+    public long getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(long quantity) {
         this.quantity = quantity;
     }
 
-    public int getPrice() {
+    public long getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(long price) {
         this.price = price;
     }
 
